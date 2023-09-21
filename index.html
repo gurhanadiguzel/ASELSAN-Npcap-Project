@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aselsan Network Sniffer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/aselsan_icon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header">
+        <h1 style="padding-left: 50px; ">Paket Yakalama Sayfası</h1>
+        <img src=" images/aselsan_logo.png" alt="aselsan">
+    </div>
+
+    <div class="devicesBox" id="deviceContainer"></div>
+
+    <div class="inputBox" style="padding-left: 20px; display: flex; align-items: center;">
+        <div>
+            <label for="deviceNumber">Cihaz Numarasını Gir:</label>
+            <input type="number" id="deviceNumber">
+            <button id="selectDeviceButton" onclick="handleDeviceSelection()">Cihazı Seç</button>
+            <button id="changeDeviceButton" style="display: none;" onclick="changeDevice()">Cihazı Değiştir</button>
+            <p id="selectionResult"></p>
+        </div>
+
+        <div style="flex-grow: 1; text-align: right;">
+            <div class="start-button" onclick="startSniffing()">Başlat</div>
+            <div class="stop-button" onclick="stopSniffing()">Durdur</div>
+            <a class="download-button" href="/download">İndir</a>
+        </div>
+    </div>
+
+    <script>
+        async function fetchDeviceData() {
+            try {
+                const response = await fetch('devices.json');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching device data:', error);
+                return [];
+            }
+        }
+
+        async function displayDeviceData() {
+            const deviceData = await fetchDeviceData();
+            const deviceContainer = document.getElementById('deviceContainer');
+
+            deviceData.forEach((device, index) => {
+                const deviceInfo = document.createElement('div');
+                deviceInfo.innerHTML = `<strong> ${index + 1} - Cihaz Adı:</strong> ${device.description}<br><strong> Açıklama:</strong> ${device.name}<br><br>`;
+                deviceContainer.appendChild(deviceInfo);
+            });
+        }
+
+        async function handleDeviceSelection() {
+            const deviceNumber = document.getElementById('deviceNumber').value;
+
+            try {
+                const response = await fetch(`/selectDevice?deviceNumber=${deviceNumber}`);
+                const result = await response.text();
+
+                const selectionResult = document.getElementById('selectionResult');
+                selectionResult.textContent = result;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        let pcapLoopStarted = false;
+
+        async function startSniffing() {
+            try {
+                pcapLoopStarted = true;
+                // Make an HTTP request to set the start flag
+                const response = await fetch('/startFlag');
+                const result = await response.text();
+                console.log(result);
+
+                // Update button visibility
+                document.getElementById('selectDeviceButton').style.display = 'none';
+                document.getElementById('changeDeviceButton').style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function stopSniffing() {
+            try {
+                pcapLoopStarted = false;
+                // Make an HTTP request to set the stop flag
+                const response = await fetch('/stopFlag');
+                const result = await response.text();
+                console.log(result);
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function changeDevice() {
+            try {
+                // Make an HTTP request to set the change flag
+                const response = await fetch('/changeFlag');
+                const result = await response.text();
+                console.log(result);
+
+                // Reset the selection result and show the "Select Device" button again
+                const selectionResult = document.getElementById('selectionResult');
+                selectionResult.textContent = '';
+
+                document.getElementById('deviceNumber').value = '';
+                document.getElementById('selectDeviceButton').style.display = 'block';
+                document.getElementById('changeDeviceButton').style.display = 'none';
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Load and display device data when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            displayDeviceData();
+        });
+    </script>
+
+
+</body>
+
+</html>

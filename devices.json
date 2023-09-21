@@ -1,0 +1,34 @@
+[
+    {
+        "description": "WAN Miniport (Network Monitor)",
+        "name": "\\Device\\NPF_{42678862-F331-42EF-BD99-0859395C5764}"
+    },
+    {
+        "description": "WAN Miniport (IPv6)",
+        "name": "\\Device\\NPF_{99428807-6ECD-4620-A4F7-B468A834969E}"
+    },
+    {
+        "description": "WAN Miniport (IP)",
+        "name": "\\Device\\NPF_{78E8B37B-ED27-460F-932F-A1596B586C87}"
+    },
+    {
+        "description": "Intel(R) Wi-Fi 6 AX201 160MHz",
+        "name": "\\Device\\NPF_{00363FAD-22BE-4479-89E5-BEE93BE1D7B4}"
+    },
+    {
+        "description": "Microsoft Wi-Fi Direct Virtual Adapter #2",
+        "name": "\\Device\\NPF_{FC8EE4C9-5463-445E-9B58-6822BDADBA94}"
+    },
+    {
+        "description": "Microsoft Wi-Fi Direct Virtual Adapter",
+        "name": "\\Device\\NPF_{91FE6EB3-F0CE-4B3F-95B3-ADCE15D66166}"
+    },
+    {
+        "description": "Adapter for loopback traffic capture",
+        "name": "\\Device\\NPF_Loopback"
+    },
+    {
+        "description": "Intel(R) Ethernet Connection (11) I219-LM",
+        "name": "\\Device\\NPF_{E1CF7640-B667-4395-8D42-497C4B23AB17}"
+    }
+]

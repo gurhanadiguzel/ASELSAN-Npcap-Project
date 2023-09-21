@@ -1,0 +1,99 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#outputContainer {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+}
+
+label {
+    display: inline-block;
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+}
+
+/* Styles for the version class */
+.devicesBox {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Styles for the download buttons */
+
+.download-button {
+    display: inline-block;
+    background-color: DodgerBlue;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    border-color: white;
+    padding: 5px 10px 5px 10px;
+    margin-right: 10px;
+}
+
+.download-button:hover {
+    background-color: RoyalBlue;
+}
+
+.start-button {
+    display: inline-block;
+    background-color: limegreen;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    border-color: white;
+    margin-right: 10px;
+}
+
+.start-button:hover {
+    background-color: darkgreen; 
+}
+
+
+.stop-button {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    border-color: white;
+    margin-right: 10px;
+}
+
+.stop-button:hover {
+    background-color: darkred; 
+}
+
